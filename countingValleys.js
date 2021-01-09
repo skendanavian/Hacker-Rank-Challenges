@@ -21,15 +21,12 @@
 // int: the number of valleys traversed
 
 function countingValleys(steps, path) {
-  // Write your code here
-  // translate letters into numbers  - whenever it goes into negatives, it is a valley
-  // console.log(path.split(""));
   let altitude = 0;
   let valleyCount = 0;
   for (let i = 0; i < steps; i++) {
-    path[i] === "U" ? (altitude += 1) : (altitude -= 1);
+    path[i] === "U" ? altitude++ : altitude--;
     if (altitude === -1 && path[i] !== "U") {
-      valleyCount += 1;
+      valleyCount++;
     }
   }
   return valleyCount;
