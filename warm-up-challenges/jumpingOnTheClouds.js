@@ -21,11 +21,22 @@
 // The first line contains an integer , the total number of clouds. The second line contains  space-separated binary integers describing clouds  where .
 
 function jumpingOnClouds(c) {
-  console.log(c);
+  let jumpCount = 0;
+
+  for (let i = 1; i < c.length; i++) {
+    console.log(c[i]);
+    if (c[i + 1] === 0) {
+      jumpCount++;
+      i++;
+    } else if (c[i] === 0) {
+      jumpCount++;
+    }
+  }
+  return jumpCount;
 }
 
 //Test Input
 
-const clouds = [0, 0, 1, 0, 0, 1, 0];
+const clouds = [0, 0, 1, 0, 0, 1, 0]; // expected output 4
 
 jumpingOnClouds(clouds);
