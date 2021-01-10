@@ -15,19 +15,11 @@ function hourglassSum(arr) {
         arr[y + 2][x + 1] +
         arr[y + 2][x + 2];
 
-      console.log("current sum" + currentSum);
-
-      if (
-        currentSum > max ||
-        (currentSum <= 0 && (max < currentSum || max === 0))
-      ) {
-        // (currentSum > 0 && max === 0)
-        // console.log(max);
+      if ((y === 0 && x === 0) || currentSum > max) {
         max = currentSum;
       }
     }
   }
-  console.log({ max });
   return max;
 }
 
@@ -58,6 +50,6 @@ const input3 = [
   [0, 0, -1, -2, -4, 0],
 ]; // expected output 0
 
-// hourglassSum(input);
+hourglassSum(input);
 hourglassSum(input2);
-// hourglassSum(input3);
+hourglassSum(input3);
