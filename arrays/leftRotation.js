@@ -1,13 +1,13 @@
 // two inputs - array of numbers and n = how many left shifts to execute
 
 function rotLeft(a, d) {
-  let rotatedArray = a;
-
-  for (let i = 0; i < d; i++) {
-    let firstEl = rotatedArray.shift();
-    rotatedArray = [...rotatedArray, firstEl];
-  }
-  return rotatedArray;
+  // divide to get remainder and reduce redundant shifts
+  const remainder = d % a.length;
+  // split array items based on remainder
+  const splitArray = [a.splice(0, remainder)];
+  // merge the separated parts
+  const merged = [].concat(...a, ...splitArray);
+  return merged;
 }
 
 // test inputs
