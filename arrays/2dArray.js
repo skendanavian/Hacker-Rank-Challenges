@@ -17,7 +17,11 @@ function hourglassSum(arr) {
 
       console.log("current sum" + currentSum);
 
-      if (currentSum > max || (currentSum <= 0 && max < currentSum)) {
+      if (
+        currentSum > max ||
+        (currentSum <= 0 && (max < currentSum || max === 0))
+      ) {
+        // (currentSum > 0 && max === 0)
         // console.log(max);
         max = currentSum;
       }
