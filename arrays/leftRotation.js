@@ -7,6 +7,7 @@ function rotLeft(a, d) {
   const splitArray = [a.splice(0, remainder)];
   // merge the separated parts
   const merged = [].concat(...a, ...splitArray);
+
   return merged;
 }
 
