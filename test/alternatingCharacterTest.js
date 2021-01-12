@@ -24,9 +24,3 @@ describe("function removes repeating adjacent characters from string", function 
     expect(alternatingCharacters(str5)).to.equal(4);
   });
 });
-
-// alternatingCharacters(str1); // expect 3
-// alternatingCharacters(str2); // expect 4
-// alternatingCharacters(str3); // expect 0
-// alternatingCharacters(str4); // expect 0
-// alternatingCharacters(str5); // expect 4
