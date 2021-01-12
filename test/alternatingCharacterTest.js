@@ -11,13 +11,18 @@ describe("function removes repeating adjacent characters from string", function 
   it("removes 3 characters", function () {
     expect(alternatingCharacters(str1)).to.equal(3);
   });
-
-  // it('content', function(done) {
-  //     request('http://localhost:8080/' , function(error, response, body) {
-  //         expect(body).to.equal('Hello World');
-  //         done();
-  //     });
-  // });
+  it("removes 4 characters", function () {
+    expect(alternatingCharacters(str2)).to.equal(4);
+  });
+  it("removes 0 characters", function () {
+    expect(alternatingCharacters(str3)).to.equal(0);
+  });
+  it("removes 3 characters", function () {
+    expect(alternatingCharacters(str4)).to.equal(0);
+  });
+  it("removes 3 characters", function () {
+    expect(alternatingCharacters(str5)).to.equal(4);
+  });
 });
 
 // alternatingCharacters(str1); // expect 3
