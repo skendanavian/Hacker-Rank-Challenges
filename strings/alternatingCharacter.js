@@ -4,8 +4,13 @@
 
 // returns the minimum number of deletions required
 
-function alternatingCharacters(s) {
-  return 3;
+function alternatingCharacters(string) {
+  let counter = 0;
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === string[i + 1]) counter++;
+  }
+
+  return counter;
 }
 
 // test input
@@ -15,11 +20,5 @@ const str2 = "BBBBB";
 const str3 = "ABABABAB";
 const str4 = "BABABA";
 const str5 = "AAABBB";
-
-alternatingCharacters(str1); // expect 3
-alternatingCharacters(str2); // expect 4
-alternatingCharacters(str3); // expect 0
-alternatingCharacters(str4); // expect 0
-alternatingCharacters(str5); // expect 4
 
 module.exports = alternatingCharacters;
