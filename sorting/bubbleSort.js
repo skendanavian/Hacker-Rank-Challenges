@@ -1,3 +1,7 @@
+// this one is a bit odd, instruction wise
+// Basically have to swap adjacent array items (integers) if they are not in ascending order until the array is in order.
+// Keep track of the number of swaps
+
 function countSwaps(a) {
   const n = a.length;
   let count = 0;
