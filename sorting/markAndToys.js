@@ -6,8 +6,19 @@
 // Return int of the max number of toys that can be purchased
 
 function maximumToys(prices, k) {
-  console.log(prices);
-  console.log(k);
+  let totalSpending = 0;
+  let toyCount = 0;
+
+  prices
+    .sort((a, b) => a - b)
+    .forEach((num) => {
+      parseInt(num);
+      if (parseInt(num) + totalSpending <= k) {
+        totalSpending += parseInt(num);
+        toyCount++;
+      }
+    });
+  return toyCount;
 }
 
 module.exports = maximumToys;
