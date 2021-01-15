@@ -2,7 +2,33 @@
 
 function minimumSwaps(arr) {
   // store indexes of highest and lowest numbers which are not in correct position
-  // loop
+  // index of highest number should be the last item in the array.
+
+  //store index of highest non-replaced item.  Start at default of last item.
+  let upperIndex = arr.length - 1;
+  let swapCount = 0;
+
+  // loop while maxIndex exists
+  while (upperIndex > 0) {
+    console.log(upperIndex);
+    if (arr[upperIndex] !== upperIndex + 1) {
+      // get index of what should be the highest number and then swap
+      const maxIndex = arr.indexOf(upperIndex + 1);
+      console.log({ maxIndex });
+      // const smallerNum = arr[upperIndex];
+      // const largerNum = arr[maxIndex];
+      console.log(maxIndex);
+      // Do the Swaperoo
+      [arr[maxIndex], arr[upperIndex]] = [arr[upperIndex], arr[maxIndex]];
+      swapCount++;
+      upperIndex--;
+    } else {
+      upperIndex--;
+    }
+  }
+  console.log(arr);
+  console.log(swapCount);
+  return swapCount;
 }
 
 // Test input
