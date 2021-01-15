@@ -3,31 +3,21 @@
 function isValid(s) {
   // convert to array
   // sort
-  // remove duplicate characters using filter
+  // remove duplicate characters
   // length of removed duplicates should now be exactly 1/2 or 1/2 + 1 of original.
 
-  const lettersArray = s.split("");
-  lettersArray.sort((a, b) => b - a);
-  const removedDuplicates = [];
+  const lettersArray = s.split("").sort();
+  const duplicates = [];
 
   for (let i = 0; i < lettersArray.length; i += 2) {
-    if (s[i + 1] === s[i]) {
-      removedDuplicates.push(s[i]);
+    if (lettersArray[i + 1] === lettersArray[i]) {
+      duplicates.push(lettersArray[i]);
+    } else {
+      i--;
     }
   }
 
-  console.log({ removedDuplicates });
-  const removedDuplicatesLength = removedDuplicates.length;
-  const halvedOriginalLength = Math.floor(lettersArray.length / 2);
-  // console.log({ removedDuplicates });
-  // console.log({ removedDuplicatesLength });
-  // console.log({ lettersArray });
-  // console.log({ halvedOriginalLength });
-  // if (
-  //   removedDuplicatesLength === halvedOriginalLength ||
-  //   removedDuplicatesLength === halvedOriginalLength + 1
-  // ) {
-  if (lettersArray.length / 2 - removedDuplicates.length >= 0) {
+  if (lettersArray.length - duplicates.length * 2 <= 1) {
     console.log("YES");
   } else {
     console.log("NO");
