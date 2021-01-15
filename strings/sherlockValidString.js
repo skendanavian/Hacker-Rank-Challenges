@@ -2,13 +2,21 @@
 
 function isValid(s) {
   // convert to array
+  // sort
   // remove duplicate characters using filter
   // length of removed duplicates should now be exactly 1/2 or 1/2 + 1 of original.
 
   const lettersArray = s.split("");
-  const removedDuplicates = lettersArray.filter(
-    (char, index) => s.indexOf(char) === index
-  );
+  lettersArray.sort((a, b) => b - a);
+  const removedDuplicates = [];
+
+  for (let i = 0; i < lettersArray.length; i += 2) {
+    if (s[i + 1] === s[i]) {
+      removedDuplicates.push(s[i]);
+    }
+  }
+
+  console.log({ removedDuplicates });
   const removedDuplicatesLength = removedDuplicates.length;
   const halvedOriginalLength = Math.floor(lettersArray.length / 2);
   // console.log({ removedDuplicates });
@@ -19,7 +27,7 @@ function isValid(s) {
   //   removedDuplicatesLength === halvedOriginalLength ||
   //   removedDuplicatesLength === halvedOriginalLength + 1
   // ) {
-  if (lettersArray.length / 2 - removedDuplicates.length > 0) {
+  if (lettersArray.length / 2 - removedDuplicates.length >= 0) {
     console.log("YES");
   } else {
     console.log("NO");
@@ -31,7 +39,9 @@ function isValid(s) {
 const string1 = "aabbccddeefghi";
 const string2 = "abcdefghhgfedecba";
 const string3 = "aabbcd";
+const string4 = "aaaaabc";
 
 isValid(string1); // expect NO
 isValid(string2); // expect YES
 isValid(string3); // expect NO
+isValid(string4); // expect NO
