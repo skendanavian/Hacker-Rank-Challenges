@@ -39,7 +39,8 @@ function isValid(s) {
       allCountsAreEven = false;
     }
   }
-  //PASSING CASES
+
+  // Check conditions for passing cases
   // 1 case of an odd number group of letters AND no single characters
   // no odd number groups AND 1 single character
   // All letter groups contain even numbers
@@ -64,7 +65,7 @@ function isValid(s) {
   }
 }
 
-// test input
+// test inputs
 
 const string1 = "aabbccddeefghi";
 const string2 = "abcdefghhgfedecba";

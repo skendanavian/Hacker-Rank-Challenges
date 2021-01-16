@@ -12,7 +12,6 @@ function maximumToys(prices, k) {
   prices
     .sort((a, b) => a - b)
     .forEach((num) => {
-      parseInt(num);
       if (parseInt(num) + totalSpending <= k) {
         totalSpending += parseInt(num);
         toyCount++;

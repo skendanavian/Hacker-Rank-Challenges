@@ -15,7 +15,6 @@ function minimumSwaps(arr) {
         arr[lastIndex],
         arr[replacementIndex],
       ];
-
       // add to swap count and lower lastIndex to check the next highest value
       swapCount++;
       lastIndex--;
