@@ -7,21 +7,63 @@ function isValid(s) {
   // length of removed duplicates should now be exactly 1/2 or 1/2 + 1 of original.
 
   const lettersArray = s.split("").sort();
-  const duplicates = [];
+  const countObj = {};
 
-  for (let i = 0; i < lettersArray.length; i += 2) {
-    if (lettersArray[i + 1] === lettersArray[i]) {
-      duplicates.push(lettersArray[i]);
-    } else {
-      i--;
+  lettersArray.forEach((e) => {
+    const count = countObj[e] >= 0 ? countObj[e] + 1 : 0;
+    countObj[e] = count;
+  });
+
+  let extraChars = 0;
+  let allEven = true;
+
+  for (char in countObj) {
+    if (countObj[char] % 2 !== 0) {
+      extraChars++;
+      allEven = false;
     }
   }
 
-  if (lettersArray.length - duplicates.length * 2 <= 1) {
-    console.log("YES");
-  } else {
-    console.log("NO");
+  let duplicates = [];
+  let remainder = s.length;
+  let individuals = 0;
+
+  // for (let i = 0; i < lettersArray.length; i += 2)
+  let i = 0;
+  while (i < lettersArray.length) {
+    console.log(i);
+    if (lettersArray[i] === lettersArray[i + 1]) {
+      duplicates = [...duplicates, lettersArray[i]];
+      remainder -= 2;
+      i += 2;
+    } else {
+      i += 1;
+      individuals++;
+    }
   }
+
+  // for (let i = 0; i < 20; i++) {
+  //   console.log(lettersArray[i]);
+  //   console.log(duplicates[i]);
+  // }
+
+  // console.log({ duplicates });
+  // console.log(duplicates.length);
+  // console.log({ lettersArray });
+  console.log({ countObj });
+  // console.log(lettersArray.length);
+  // console.log({ remainder });
+  // console.log({ individuals });
+  // console.log({ lettersArray });
+
+  // if (
+  //   lettersArray.length - duplicates.length * 2 <= 1 ||
+  //   duplicates.length < 2
+  // ) {
+  //   console.log("YES");
+  // } else {
+  //   console.log("NO");
+  // }
 }
 
 // test input
@@ -30,8 +72,11 @@ const string1 = "aabbccddeefghi";
 const string2 = "abcdefghhgfedecba";
 const string3 = "aabbcd";
 const string4 = "aaaaabc";
+const string5 =
+  "ibfdgaeadiaefgbhbdghhhbgdfgeiccbiehhfcggchgghadhdhagfbahhddgghbdehidbibaeaagaeeigffcebfbaieggabcfbiiedcabfihchdfabifahcbhagccbdfifhghcadfiadeeaheeddddiecaicbgigccageicehfdhdgafaddhffadigfhhcaedcedecafeacbdacgfgfeeibgaiffdehigebhhehiaahfidibccdcdagifgaihacihadecgifihbebffebdfbchbgigeccahgihbcbcaggebaaafgfedbfgagfediddghdgbgehhhifhgcedechahidcbchebheihaadbbbiaiccededchdagfhccfdefigfibifabeiaccghcegfbcghaefifbachebaacbhbfgfddeceababbacgffbagidebeadfihaefefegbghgddbbgddeehgfbhafbccidebgehifafgbghafacgfdccgifdcbbbidfifhdaibgigebigaedeaaiadegfefbhacgddhchgcbgcaeaieiegiffchbgbebgbehbbfcebciiagacaiechdigbgbghefcahgbhfibhedaeeiffebdiabcifgccdefabccdghehfibfiifdaicfedagahhdcbhbicdgibgcedieihcichadgchgbdcdagaihebbabhibcihicadgadfcihdheefbhffiageddhgahaidfdhhdbgciiaciegchiiebfbcbhaeagccfhbfhaddagnfieihghfbaggiffbbfbecgaiiidccdceadbbdfgigibgcgchafccdchgifdeieicbaididhfcfdedbhaadedfageigfdehgcdaecaebebebfcieaecfagfdieaefdiedbcadchabhebgehiidfcgahcdhcdhgchhiiheffiifeegcfdgbdeffhgeghdfhbfbifgidcafbfcd";
 
-isValid(string1); // expect NO
-isValid(string2); // expect YES
-isValid(string3); // expect NO
-isValid(string4); // expect NO
+// isValid(string1); // expect NO
+// isValid(string2); // expect YES
+// isValid(string3); // expect NO
+// isValid(string4); // expect NO
+isValid(string5); // expect YES
