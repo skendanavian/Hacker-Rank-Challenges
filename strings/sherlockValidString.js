@@ -15,14 +15,25 @@ function isValid(s) {
   let allCountsAreEven = true;
   let evenCharCount = 0;
   let singleCharCount = 0;
+  let maxRepeatInstance = false;
+  let differingEvenGroups = 0;
 
   // loop through charObj -> adjust outcome counters accordingly
   for (let char in countObj) {
     if (countObj[char] % 2 !== 0 && countObj[char] !== 0) {
       evenCharCount++;
-      allCountsAreEven = false;
-    } else if (countObj[char] % 2 === 0 && countObj[char] !== 0) {
+
+      if (!differingEvenGroups) {
+        differingEvenGroups = [];
+        differingEvenGroups.push(countObj[char] + 1);
+      } else if (!differingEvenGroups.find((e) => e === countObj[char] + 1)) {
+        differingEvenGroups.push(countObj[char] + 1);
+      }
+      if (!maxRepeatInstance) maxRepeatInstance = countObj[char] + 1;
+    }
+    if (countObj[char] % 2 === 0 && countObj[char] !== 0) {
       oddGroupCount++;
+      allCountsAreEven = false;
     }
     if (countObj[char] === 0) {
       singleCharCount++;
@@ -34,17 +45,22 @@ function isValid(s) {
   // no odd number groups AND 1 single character
   // All letter groups contain even numbers
   // Every letter is a single case
-  // console.log({ countObj });
-  // console.log({ singleCharCount });
-  // console.log({ oddGroupCount });
-  // console.log({ allCountsAreEven });
-  // console.log({ evenCharCount });
+  console.log({ countObj });
+  console.log({ singleCharCount });
+  console.log({ oddGroupCount });
+  console.log({ allCountsAreEven });
+  console.log({ evenCharCount });
+  console.log({ maxRepeatInstance });
+  console.log({ differingEvenGroups });
 
-  if (
+  if (allCountsAreEven && differingEvenGroups.length > 1 && evenCharCount > 2) {
+    console.log("NO");
+    return "NO";
+  } else if (
     (!singleCharCount && oddGroupCount <= 1) ||
     (!oddGroupCount && singleCharCount <= 1) ||
     singleCharCount === s.length ||
-    allCountsAreEven ||
+    (evenCharCount && singleCharCount === 1) ||
     (!evenCharCount && singleCharCount === 1)
   ) {
     console.log("YES");
@@ -63,9 +79,15 @@ const string3 = "aabbcd";
 const string4 = "aaaaabc";
 const string5 =
   "ibfdgaeadiaefgbhbdghhhbgdfgeiccbiehhfcggchgghadhdhagfbahhddgghbdehidbibaeaagaeeigffcebfbaieggabcfbiiedcabfihchdfabifahcbhagccbdfifhghcadfiadeeaheeddddiecaicbgigccageicehfdhdgafaddhffadigfhhcaedcedecafeacbdacgfgfeeibgaiffdehigebhhehiaahfidibccdcdagifgaihacihadecgifihbebffebdfbchbgigeccahgihbcbcaggebaaafgfedbfgagfediddghdgbgehhhifhgcedechahidcbchebheihaadbbbiaiccededchdagfhccfdefigfibifabeiaccghcegfbcghaefifbachebaacbhbfgfddeceababbacgffbagidebeadfihaefefegbghgddbbgddeehgfbhafbccidebgehifafgbghafacgfdccgifdcbbbidfifhdaibgigebigaedeaaiadegfefbhacgddhchgcbgcaeaieiegiffchbgbebgbehbbfcebciiagacaiechdigbgbghefcahgbhfibhedaeeiffebdiabcifgccdefabccdghehfibfiifdaicfedagahhdcbhbicdgibgcedieihcichadgchgbdcdagaihebbabhibcihicadgadfcihdheefbhffiageddhgahaidfdhhdbgciiaciegchiiebfbcbhaeagccfhbfhaddagnfieihghfbaggiffbbfbecgaiiidccdceadbbdfgigibgcgchafccdchgifdeieicbaididhfcfdedbhaadedfageigfdehgcdaecaebebebfcieaecfagfdieaefdiedbcadchabhebgehiidfcgahcdhcdhgchhiiheffiifeegcfdgbdeffhgeghdfhbfbifgidcafbfcd";
+const string6 = "aaaabbcc";
+const string7 = "xxxaabbccrry";
+const string8 = "abbccc";
 
-isValid(string1); // expect NO
-isValid(string2); // expect YES
-isValid(string3); // expect NO
-isValid(string4); // expect NO
+// isValid(string1); // expect NO
+// isValid(string2); // expect YES
+// isValid(string3); // expect NO
+// isValid(string4); // expect NO
 isValid(string5); // expect YES
+// isValid(string6); // expect NO
+isValid(string7); // expect NO
+isValid(string8); // expect NO
